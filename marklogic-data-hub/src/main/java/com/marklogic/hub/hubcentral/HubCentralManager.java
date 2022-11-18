@@ -244,6 +244,9 @@ public class HubCentralManager extends LoggingObject {
                 int entrySize = (int) entry.getSize();
                 byte[] buffer = new byte[entrySize];
                 File outputFile = new File(projectDir, entry.getName());
+                if (!outputFile.toPath().normalize().startsWith(projectDir.toPath().normalize())) {
+                    throw new IOException("Bad zip entry");
+                }
                 outputFile.getParentFile().mkdirs();
                 try (InputStream inputStream = zip.getInputStream(entry);
                      FileOutputStream fileOut = new FileOutputStream(outputFile)) {
