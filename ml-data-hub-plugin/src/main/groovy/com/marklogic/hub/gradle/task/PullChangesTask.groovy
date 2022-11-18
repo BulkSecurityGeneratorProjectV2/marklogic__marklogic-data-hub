@@ -14,7 +14,7 @@ class PullChangesTask extends HubTask {
         File zipFile
         FileOutputStream fos
         try {
-            zipFile = File.createTempFile("hub-central-project", ".zip")
+            zipFile = Files.createTempFile("hub-central-project",".zip").toFile()
             println "Downloading user configuration files to: " + zipFile
             fos = new FileOutputStream(zipFile)
             hubCentralManager.writeHubCentralFilesAsZip(getHubConfig().newHubClient(), fos)

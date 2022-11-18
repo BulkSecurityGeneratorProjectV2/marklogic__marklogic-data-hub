@@ -271,7 +271,7 @@ public class MlcpRunner extends ProcessRunner {
 
         //logger.warn("Classpath filtered to: " + filteredClasspathEntries);
 
-        File loggerFile = File.createTempFile("mlcp-", "-logger.xml");
+        File loggerFile = Files.createTempFile("mlcp-", "-logger.xml").toFile();
         FileUtils.writeStringToFile(loggerFile, buildLoggerconfig());
 
         args.add(javaBin);
